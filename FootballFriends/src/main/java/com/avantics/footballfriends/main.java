@@ -3,6 +3,7 @@ package com.avantics.footballfriends;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -26,6 +27,7 @@ public class main extends Activity {
 
         // allow link clicks to be handled by the web app
         myWebView.setWebViewClient(new WebViewClient());
+        myWebView.setWebChromeClient(new WebChromeClient());
 
         // load web app
         myWebView.loadUrl("http://jumpersforgoalposts.azurewebsites.net/");
