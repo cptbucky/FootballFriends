@@ -1,0 +1,7 @@
+C:\dev\Default\JumpersForGoalposts\MAIN\JumpersForGoalposts.Web\bin\JumpersForGoalposts.Web.dll
+C:\dev\Default\JumpersForGoalposts\MAIN\JumpersForGoalposts.Web\bin\JumpersForGoalposts.Web.pdb
+C:\dev\Default\JumpersForGoalposts\MAIN\JumpersForGoalposts.Web\obj\Debug\JumpersForGoalposts.Web.csprojResolveAssemblyReference.cache
+C:\dev\Default\JumpersForGoalposts\MAIN\JumpersForGoalposts.Web\obj\Debug\JumpersForGoalposts.Web.dll
+C:\dev\Default\JumpersForGoalposts\MAIN\JumpersForGoalposts.Web\obj\Debug\JumpersForGoalposts.Web.pdb
+C:\dev\Default\JumpersForGoalposts\MAIN\JumpersForGoalposts.Web\bin\JumpersForGoalposts.Data.dll
+C:\dev\Default\JumpersForGoalposts\MAIN\JumpersForGoalposts.Web\bin\JumpersForGoalposts.Data.pdb

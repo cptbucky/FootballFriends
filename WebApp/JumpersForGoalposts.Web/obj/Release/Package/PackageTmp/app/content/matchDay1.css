@@ -1,0 +1,40 @@
+﻿.matchDayFixtureHeading {
+    margin-bottom: 10px;
+}
+
+.pitch,
+.subsBench {
+    background-color: #FFFFFF;
+    border: 1px solid #999999;
+    margin-right: -15px;
+    margin-left: -15px;
+    padding: 10px 5px;
+}
+
+.playerRow {
+    text-align: center;
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
+    .playerRow > div {
+        height: 70px;
+        font-size: 10px;
+    }
+
+        .playerRow > div span {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 10px;
+            margin: auto;
+        }
+
+    .playerRow img {
+        height: 70px;
+        padding: 5px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }

@@ -1,0 +1,4 @@
+C:\dev\Default\JumpersForGoalposts\MAIN\JumpersForGoalposts.Data\bin\Release\JumpersForGoalposts.Data.dll
+C:\dev\Default\JumpersForGoalposts\MAIN\JumpersForGoalposts.Data\bin\Release\JumpersForGoalposts.Data.pdb
+C:\dev\Default\JumpersForGoalposts\MAIN\JumpersForGoalposts.Data\obj\Release\JumpersForGoalposts.Data.dll
+C:\dev\Default\JumpersForGoalposts\MAIN\JumpersForGoalposts.Data\obj\Release\JumpersForGoalposts.Data.pdb

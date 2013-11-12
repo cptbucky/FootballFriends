@@ -1,0 +1,25 @@
+﻿<div class="mainFixture">
+    <div class="row listViewRow matchDayFixtureHeading" style="text-align: center;">
+        Arsenal vs Sunderland
+    </div>
+    <div class="pitch">
+        <div ng-repeat="teamRow in team" class="row playerRow">
+            <div ng-repeat="member in teamRow" ng-class="member.widthClass">
+                <img src="/Content/images/kit.png" />
+                <span>{{member.name}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="row playerRow">
+        <div ng-repeat="sub in subs" ng-class="sub.widthClass">
+            <img src="/Content/images/kit.png" />
+            <span>{{sub.name}}</span>
+        </div>
+    </div>
+    <ul class="listView">
+        <li ng-repeat="member in standbys" class="row listViewRow">
+            <div class="col-xs-9">{{member.name}}</div>
+            <div class="col-xs-3">{{member.position}}</div>
+        </li>
+    </ul>
+</div>
