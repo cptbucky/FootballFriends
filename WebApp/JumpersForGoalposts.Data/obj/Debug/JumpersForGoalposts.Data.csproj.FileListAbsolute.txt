@@ -2,3 +2,8 @@ C:\dev\Default\JumpersForGoalposts\MAIN\JumpersForGoalposts.Data\bin\Debug\Jumpe
 C:\dev\Default\JumpersForGoalposts\MAIN\JumpersForGoalposts.Data\bin\Debug\JumpersForGoalposts.Data.pdb
 C:\dev\Default\JumpersForGoalposts\MAIN\JumpersForGoalposts.Data\obj\Debug\JumpersForGoalposts.Data.dll
 C:\dev\Default\JumpersForGoalposts\MAIN\JumpersForGoalposts.Data\obj\Debug\JumpersForGoalposts.Data.pdb
+C:\dev\TeamManagerProject\WebApp\JumpersForGoalposts.Data\bin\Debug\JumpersForGoalposts.Data.dll
+C:\dev\TeamManagerProject\WebApp\JumpersForGoalposts.Data\bin\Debug\JumpersForGoalposts.Data.pdb
+C:\dev\TeamManagerProject\WebApp\JumpersForGoalposts.Data\obj\Debug\JumpersForGoalposts.Data.csprojResolveAssemblyReference.cache
+C:\dev\TeamManagerProject\WebApp\JumpersForGoalposts.Data\obj\Debug\JumpersForGoalposts.Data.dll
+C:\dev\TeamManagerProject\WebApp\JumpersForGoalposts.Data\obj\Debug\JumpersForGoalposts.Data.pdb

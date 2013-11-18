@@ -11,8 +11,8 @@
     <link href="app/content/android.css" rel="stylesheet" />
     <link href="app/content/matchDay1.css" rel="stylesheet" />
 
-    <script src="Scripts/angular.js"></script>
-    <script src="Scripts/angular-resource.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-resource.min.js"></script>
     <%--<script src="Scripts/hello.js"></script>--%>
     <script src="Scripts/i18n/angular-locale_en-gb.js"></script>
     <script src="Scripts/google-plus-signin.js"></script>
@@ -56,7 +56,7 @@
                         <li class="glyphicon glyphicon-align-justify"></li>
                     </ul>
                 </div>--%>
-                <button type="button" class="btn" bs-dropdown="dropdown">...</button>
+                <button type="button" class="btn pull-right navButton" bs-dropdown="dropdown">...</button>
             </div>
         </div>
         <ng-view></ng-view>
