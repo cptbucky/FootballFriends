@@ -1,0 +1,10 @@
+﻿<div>
+    <h4>Date</h4>
+    <input type="datetime" value="{{fixture.date}}" />
+    <h4>Location</h4>
+    <input type="text" value="{{fixture.location}}" />
+    <h4>Opposition</h4>
+    <input type="text" value="{{fixture.awayTeam}}" />
+    <h4>Home or Away?</h4>
+    <select ng-model="place" ng-options="p.name for p in places" />   
+</div>
