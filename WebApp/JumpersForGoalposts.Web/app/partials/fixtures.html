@@ -1,8 +1,11 @@
-﻿<div ng-repeat="day in fixturesByDate">
-    <h4>{{day.date}}</h4>
+﻿<div ng-repeat="month in fixturesByMonth">
+    <h4 class="fixtureGroupHead">{{month.month}}</h4>
     <ul class="mainFixture listView">
-        <li ng-repeat="fixture in day.fixtures" ng-click="select(fixture)" ng-class="{selected: fixture.selected}" class="row listViewRow" style="text-align: center;">
-            {{fixture.homeTeam}} vs {{fixture.awayTeam}}
+        <li ng-repeat="fixture in month.fixtures" ng-click="select(fixture)" ng-class="{selected: fixture.selected}" class="row listViewRow">
+            <div class="pull-left">{{getFixtureString(fixture)}}</div>
+            <div ng-show="fixture.selected">
+                <img src="/Content/images/ic_2-action-about.png" class="btn pull-right infoButton" ng-click="navToFixtureScreen()" />
+            </div>
         </li>
     </ul>
 </div>

@@ -10,7 +10,14 @@ jfg.controller('loginController', ['$scope', '$location', 'AuthenticationModel',
     });
 }]);
 
-jfg.controller('squadController', ['$scope', 'squadService', function squadController($scope, squadService) {
+jfg.controller('squadController', ['$scope', '$location', 'NavigationService', 'squadService', function squadController($scope, $location, navigation, squadService) {
+    function addSquadMember() {
+
+    }
+
+    navigation.setBackButton(false);
+    navigation.setOptions([{ imgPath: 'Content/images/ic_5-content-new.png', action: addSquadMember }]);
+
     var setData = function (data) {
         $scope.squadMembers = data;
     };
@@ -18,7 +25,10 @@ jfg.controller('squadController', ['$scope', 'squadService', function squadContr
     squadService.get(setData);
 }]);
 
-jfg.controller('matchController', ['$scope', function matchController($scope) {
+jfg.controller('matchController', ['$scope', '$location', 'NavigationService', function matchController($scope, $location, navigation) {
+    navigation.setBackButton(false);
+    navigation.setOptions([]);
+
     $scope.team = [[{
         name: 'player 1',
         position: 'GK',
@@ -66,7 +76,7 @@ jfg.controller('matchController', ['$scope', function matchController($scope) {
         position: 'CF',
         widthClass: 'col-xs-3'
     }]];
-    
+
     $scope.subs = [{
         name: 'player 12',
         position: 'LB',
@@ -84,7 +94,7 @@ jfg.controller('matchController', ['$scope', function matchController($scope) {
         position: 'RB',
         widthClass: 'col-xs-3'
     }];
-    
+
     $scope.standbys = [{
         name: 'player 6',
         position: 'LM',
@@ -104,65 +114,98 @@ jfg.controller('matchController', ['$scope', function matchController($scope) {
     }];
 }]);
 
-jfg.controller('fixturesController', ['$scope', function fixturesController($scope) {
-    $scope.fixturesByDate = [{
-            date: '01/01/2014',
-            fixtures: [{
-                    homeTeam: 'Arsenal',
-                    awayTeam: 'Sunderland',
-                    selected: false
-                }, {
-                    homeTeam: 'Man City',
-                    awayTeam: 'Newcastle United',
-                    selected: false
-                }, {
-                    homeTeam: 'Chelsea',
-                    awayTeam: 'Tottenham',
-                    selected: false
-                }, {
-                    homeTeam: 'Aston Villa',
-                    awayTeam: 'Liverpool',
-                    selected: false
-                }]
-        }, {
-            date: '07/01/2014',
-            fixtures: [{
-                    homeTeam: 'Arsenal',
-                    awayTeam: 'Liverpool',
-                    selected: false
-                }, {
-                    homeTeam: 'Man City',
-                    awayTeam: 'Aston Villa',
-                    selected: false
-                }, {
-                    homeTeam: 'Sunderland',
-                    awayTeam: 'Tottenham',
-                    selected: false
-                }, {
-                    homeTeam: 'Chelsea',
-                    awayTeam: 'Sunderland',
-                    selected: false
-                }]
-        }];
+jfg.controller('fixturesController', ['$scope', '$location', 'NavigationService', 'FixturesService', function fixturesController($scope, $location, navigation, fixtures) {
+    function navigateToNewFixturePage() {
+        fixtures.setSelectedFixture(null);
+        
+        $location.path('/newFixture');
+    }
 
-    $scope.select = function(item) {
-        for (var i = 0; i < $scope.fixturesByDate.length; i++) {
-            for (var j = 0; j < $scope.fixturesByDate[i].fixtures.length; j++) {
-                $scope.fixturesByDate[i].fixtures[j].selected = ($scope.fixturesByDate[i].fixtures[j].homeTeam === item.homeTeam && $scope.fixturesByDate[i].fixtures[j].awayTeam === item.awayTeam);
+    navigation.setBackButton(false);
+    navigation.setOptions([{ imgPath: 'Content/images/ic_5-content-new.png', action: navigateToNewFixturePage }]);
+
+    $scope.fixturesByMonth = fixtures.fixtures;
+
+    $scope.navToFixtureScreen = function() {
+        $location.path('/newFixture');
+    };
+
+    $scope.select = function (item) {
+        for (var i = 0; i < $scope.fixturesByMonth.length; i++) {
+            for (var j = 0; j < $scope.fixturesByMonth[i].fixtures.length; j++) {
+                var selected = ($scope.fixturesByMonth[i].fixtures[j].homeTeam === item.homeTeam && $scope.fixturesByMonth[i].fixtures[j].awayTeam === item.awayTeam);
+                
+                if (selected) {
+                    fixtures.setSelectedFixture($scope.fixturesByMonth[i].fixtures[j]);
+                }
+                
+                $scope.fixturesByMonth[i].fixtures[j].selected = selected;
             }
         }
     };
+
+    $scope.getFixtureString = function(fixture) {
+        var isHome = fixture.homeTeam === 'Arsenal'; //? fixture.awayTeam : fixture.homeTeam;
+
+        return (isHome ? 'H: ' : 'A: ') + (isHome ? fixture.awayTeam : fixture.homeTeam); // + ' at ' + fixture.location;
+    };
 }]);
 
-jfg.controller('navController', ['$scope', '$location', function navController($scope, lo) {
-    $scope.routeIs = function (routeName) {
-        return lo.path() === routeName;
+jfg.controller('newFixtureController', ['$scope', '$location', 'NavigationService', 'FixturesService', function newFixtureController($scope, lo, navigation, fixtures) {
+    function addFixture() {
+        lo.path('/fixtures');
+    }
+    
+    navigation.setBackButton(true);
+    navigation.setOptions([{ imgPath: 'Content/images/ic_1-navigation-accept.png', action: addFixture }]);
+
+    if (fixtures.selectedFixture() === null) {
+        $scope.fixture = {
+            date: '',
+            homeTeam: '',
+            awayTeam: '',
+            location: '',
+            selected: false
+        };
+    } else {
+        $scope.fixture = fixtures.selectedFixture();
+    }
+
+    $scope.places = [{
+            name: 'Home'
+        }, {
+            name: 'Away'
+        }];
+
+    $scope.place = {
+        name: 'Home'
     };
-   
+}]);
+
+jfg.controller('navController', ['$scope', '$location', '$window', 'NavigationService', function navController($scope, lo, $window, navigation) {
+    $scope.routeRelatesTo = function (routeName) {
+        var currentPath = lo.path();
+        
+        if (routeName === '/fixtures' && (currentPath === '/fixtures' || currentPath === '/newFixture')) {
+            return true;
+        }
+        
+        return currentPath === routeName;
+    };
+
+    $scope.pageNav = {
+        imgPath: 'Content/images/ic_1-navigation-previous-item.png',
+        action: function() {
+            $window.history.back();
+        }
+    };
+
     $scope.visible = function () {
         return lo.path() !== 'login';
     };
-    
+
+    $scope.navigation = navigation;
+
     $scope.dropdown = [
 		{ text: 'Another action', href: '#anotherAction' },
 		{ text: 'Something else here', click: "$alert('working ngClick!')" },
@@ -176,5 +219,5 @@ jfg.controller('navController', ['$scope', '$location', function navController($
 		}
     ];
 
-    $scope.alert = function(msg) { alert(msg) };
+    $scope.alert = function (msg) { alert(msg) };
 }]);

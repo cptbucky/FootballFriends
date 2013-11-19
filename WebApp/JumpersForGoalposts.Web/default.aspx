@@ -46,8 +46,12 @@
 </head>
 <body>
     <div class="container">
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-inverse navbar-fixed-top" ng-controller="navController">
             <div class="container">
+                <div id="navigationContainer" ng-show="navigation.backButton()">
+                    <img src="{{pageNav.imgPath}}" class="btn pull-left" ng-click="pageNav.action()" />
+                </div>
+
                 <div class="navbar-header">
                     <a class="navbar-brand">Jumpers for Goalposts</a>
                 </div>
@@ -56,19 +60,22 @@
                         <li class="glyphicon glyphicon-align-justify"></li>
                     </ul>
                 </div>--%>
-                <button type="button" class="btn pull-right navButton" bs-dropdown="dropdown">...</button>
+                <%--<button type="button" class="btn pull-right navButton" bs-dropdown="dropdown">...</button>--%>
+                <div ng-repeat="option in navigation.options()">
+                    <img src="{{option.imgPath}}" class="btn pull-right viewOption" ng-click="option.action()" />
+                </div>
             </div>
         </div>
         <ng-view></ng-view>
         <div class="navbar navbar-inverse navbar-fixed-bottom" ng-controller="navController">
             <ul class="nav navbar-nav nav-justified">
-                <li ng-class="{active: routeIs('/fixtures')}">
+                <li ng-class="{active: routeRelatesTo('/fixtures')}">
                     <a href="#/fixtures">Fixtures</a>
                 </li>
-                <li ng-class="{active: routeIs('/squad')}">
+                <li ng-class="{active: routeRelatesTo('/squad')}">
                     <a href="#/squad">Squad</a>
                 </li>
-                <li ng-class="{active: routeIs('/match')}">
+                <li ng-class="{active: routeRelatesTo('/match')}">
                     <a href="#/match">Match</a>
                 </li>
             </ul>

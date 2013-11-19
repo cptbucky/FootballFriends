@@ -19,8 +19,14 @@
     float: none;
 }
 
-.navButton {
-    margin-top: 6px;
+#navigationContainer img {
+    padding-right: 0;
+    padding-left: 0;
+    margin-left: -15px;
+}
+
+.viewOption {
+    padding-right: 0;
 }
 
 .listView {
@@ -45,11 +51,23 @@
         color: #ffffff;
     }
 
+    .listViewRow .infoButton {
+        margin: -13px;
+    }
+
+    /*.listViewRow.selected .infoButton {
+
+    }*/
+
     .listViewRow span {
         width: 60px;
         /*white-space: nowrap;*/
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+
+    .fixtureGroupHead {
+        margin-left: 4px;
     }
 
 /*.pitch {

@@ -69,6 +69,7 @@
     <Content Include="app\js\directives.js" />
     <Content Include="app\js\filters.js" />
     <Content Include="app\js\services.js" />
+    <Content Include="app\partials\newFixture.html" />
     <Content Include="app\partials\login.html" />
     <Content Include="app\partials\fixtures.html" />
     <Content Include="app\partials\match.html" />
@@ -80,7 +81,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\footballFriends32.png" />
-    <Content Include="Content\images\kit.png" />
+    <Content Include="Content\images\ic_1-navigation-accept.png" />
+    <Content Include="Content\images\ic_1-navigation-previous-item.png" />
+    <Content Include="Content\images\ic_2-action-about.png" />
+    <Content Include="Content\images\ic_5-content-new.png" />
+    <Content Include="Content\images\kit_64.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="default.aspx" />
     <Content Include="Scripts\angular-bootstrap-prettify.js" />

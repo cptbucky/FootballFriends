@@ -9,6 +9,7 @@ jfg.config(function ($routeProvider) {
         when('/squad', { templateUrl: 'app/partials/squad.html', controller: 'squadController' }).
         when('/match', { templateUrl: 'app/partials/match.html', controller: 'matchController' }).
         when('/fixtures', { templateUrl: 'app/partials/fixtures.html', controller: 'fixturesController' }).
+        when('/newFixture', { templateUrl: 'app/partials/newFixture.html', controller: 'newFixtureController' }).
         otherwise({ redirectTo: '/squad' });
         //otherwise({ redirectTo: '/login' });
 });
