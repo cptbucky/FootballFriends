@@ -1,8 +1,8 @@
 ﻿using System.ServiceModel;
 using System.ServiceModel.Web;
-using JumpersForGoalposts.Data.DataContracts;
+using Jumpers.Services.DataContracts;
 
-namespace JumpersForGoalposts.Data.Services
+namespace Jumpers.Services.Services
 {
     [ServiceContract]
     public interface IUserService
@@ -12,13 +12,13 @@ namespace JumpersForGoalposts.Data.Services
         //UserResponse GetUser(UserRequest request);
 
         [OperationContract]
-        [WebInvoke(UriTemplate = "User/{id}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        UserResponse User(string id);
+        [WebInvoke(UriTemplate = "GetUserById/{id}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        UserResponse GetUserById(string id);
     }
 
     public class UserService : IUserService
     {
-        public UserResponse User(string id)
+        public UserResponse GetUserById(string id)
         {
             return new UserResponse
                 {

@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace JumpersForGoalposts.Data.DataContracts
+namespace Jumpers.Services.DataContracts
 {
     [DataContract]
     public class UserRequest

@@ -55,12 +55,6 @@
                 <div class="navbar-header">
                     <a class="navbar-brand">Jumpers for Goalposts</a>
                 </div>
-                <%--  <div class="collapse navbar-collapse pull-right">
-                    <ul class="nav navbar-nav">
-                        <li class="glyphicon glyphicon-align-justify"></li>
-                    </ul>
-                </div>--%>
-                <%--<button type="button" class="btn pull-right navButton" bs-dropdown="dropdown">...</button>--%>
                 <div ng-repeat="option in navigation.options()">
                     <img src="{{option.imgPath}}" class="btn pull-right viewOption" ng-click="option.action()" />
                 </div>
