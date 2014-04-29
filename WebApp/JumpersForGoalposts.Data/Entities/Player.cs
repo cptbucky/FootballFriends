@@ -1,9 +1,10 @@
 using System.Runtime.Serialization;
+using JumpersForGoalposts.Data.Contracts;
 
-namespace Jumpers.Services.DataContracts
+namespace JumpersForGoalposts.Data.Entities
 {
     [DataContract]
-    public class UserResponse
+    internal class Player : IPlayer
     {
         [DataMember]
         public string Name { get; set; }
