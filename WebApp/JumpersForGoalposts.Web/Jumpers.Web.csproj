@@ -477,12 +477,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JumpersForGoalposts.Data\JumpersForGoalposts.Data.csproj">
-      <Project>{c5ce98cc-197c-47b6-bece-de97a3bd11cd}</Project>
-      <Name>JumpersForGoalposts.Data</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Services\" />
   </ItemGroup>
   <PropertyGroup>
