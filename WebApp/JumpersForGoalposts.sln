@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{370C58AE-544D-44C1-B1B6-D5F3A32975E8}"
 	ProjectSection(SolutionItems) = preProject
 		build.xml = build.xml
+		package.xml = package.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumpers.Data.Tests", "Jumpers.Data.Tests\Jumpers.Data.Tests.csproj", "{2E05485E-4792-4D7D-98D3-E981E8B4FB35}"
