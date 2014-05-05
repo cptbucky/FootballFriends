@@ -2,7 +2,7 @@
 using JumpersForGoalposts.Data.Providers;
 using NUnit.Framework;
 
-namespace Jumpers.Data.Tests.Providers
+namespace Jumpers.Data.UnitTests.Providers
 {
     [TestFixture]
     public class UserProviderTests

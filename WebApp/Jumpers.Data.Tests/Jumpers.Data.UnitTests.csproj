@@ -7,8 +7,8 @@
     <ProjectGuid>{2E05485E-4792-4D7D-98D3-E981E8B4FB35}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Jumpers.Data.Tests</RootNamespace>
-    <AssemblyName>Jumpers.Data.Tests</AssemblyName>
+    <RootNamespace>Jumpers.Data.UnitTests</RootNamespace>
+    <AssemblyName>Jumpers.Data.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -35,6 +35,7 @@
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

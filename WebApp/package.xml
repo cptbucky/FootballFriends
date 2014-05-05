@@ -4,10 +4,6 @@
 
   <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
 
-  <UsingTask Condition=" '$(TEAMCITY_VERSION)' != '' "
-              TaskName="NUnitTeamCity"
-              AssemblyFile="$(teamcity_dotnet_nunitlauncher_msbuild_task)" />
-
   <PropertyGroup>
     <Configuration Condition=" $(Configuration) == '' ">Debug</Configuration>
     <BuildArtifactLocation Condition=" $(BuildArtifactLocation) == '' ">BuildArtifacts</BuildArtifactLocation>
