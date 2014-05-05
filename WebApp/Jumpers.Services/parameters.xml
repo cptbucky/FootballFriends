@@ -1,0 +1,5 @@
+﻿<parameters>
+  <parameter name="IIS Web Application Name" defaultValue="Jumpers.Services" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" />
+  </parameter>
+</parameters>

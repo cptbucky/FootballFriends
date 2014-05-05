@@ -1,21 +1,173 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
-         DefaultTargets="DeployProjects"
+         DefaultTargets="CreateSites;DeploySites"
          ToolsVersion="4.0">
 
   <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
+  <Import Project="$(MSBuildExtensionsPath)\ExtensionPack\4.0\MSBuild.ExtensionPack.tasks"/>
 
   <PropertyGroup>
     <Configuration Condition=" $(Configuration) == '' ">Debug</Configuration>
+    <Environment Condition=" $(Configuration) == 'Debug' ">local</Environment>
+
+    <RootFilePath Condition=" $(RootPath) == '' ">C:\WebSites</RootFilePath>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectsToBuild Include="**\Jumpers.Services.csproj"/>
-    <ProjectsToBuild Include="**\Jumpers.Web.csproj"/>
+    <ProjectsToBuild Include="$(MSBuildProjectFullPath)">
+      <Properties>
+        ProjectName=Jumpers.Services;
+        BindingInfo=*:80:$(Environment).services.jumpers.com;
+        TargetServer=$(TargetServer);
+        UserName=$(UserName);
+        UserPassword=$(UserPassword)
+      </Properties>
+    </ProjectsToBuild>
+    <ProjectsToBuild Include="$(MSBuildProjectFullPath)">
+      <Properties>
+        ProjectName=Jumpers.Web;
+        BindingInfo=*:80:$(Environment).jumpers.com;
+        TargetServer=$(TargetServer);
+        UserName=$(UserName);
+        UserPassword=$(UserPassword)
+      </Properties>
+    </ProjectsToBuild>
   </ItemGroup>
 
-  <Target Name="DeployProjects">
+  <Target Name="CreateSites">
     <MSBuild Projects="@(ProjectsToBuild)"
-             Targets="Build"
-             Properties="VisualStudioVersion=12.0"/>
+             Targets="RemoveSiteIIS7;RemoveAppPoolIIS7;CreateAppPoolIIS7;CreateSiteIIS7;RemoveBindingIIS7;AddBindingIIS7"/>
+  </Target>
+
+  <Target Name="DeploySites">
+    <MSBuild Projects="@(ProjectsToBuild)"
+             Targets="DeploySite" />
+  </Target>
+
+  <Target Name="DeploySite">
+    <PropertyGroup>
+      <ArtifactsAbsPath>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)\BuildArtifacts\$(ProjectName)'))</ArtifactsAbsPath>
+
+      <TargetServerArg Condition=" $(TargetServer) != '' ">,computerName='$(TargetServer)'</TargetServerArg>
+
+      <DeploySource>-source:package=&quot;$(ArtifactsAbsPath)\$(ProjectName).zip&quot;</DeploySource>
+      <DeployDest>-dest:auto$(TargetServerArg)</DeployDest>
+
+      <DeploySetParamsFile>-setParamFile:&quot;$(ArtifactsAbsPath)\$(ProjectName).SetParameters.xml&quot;</DeploySetParamsFile>
+      <DeployLinkExtensions>-disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension</DeployLinkExtensions>
+      <DeployRules></DeployRules>
+      <DeployWhatIf Condition=" $(Environment) == 'local' ">-whatif</DeployWhatIf>
+    </PropertyGroup>
+
+    <Exec Command="msdeploy.exe -verb:sync $(DeploySource) $(DeployDest) $(DeploySetParamsFile) $(DeployLinkExtensions) $(DeployRules) $(DeployWhatIf)" />
+  </Target>
+
+  <Target Name="RemoveSiteIIS7">
+    <Message Text="User: $(UserName)"/>
+    <Message Text="Password: $(UserPassword)"/>
+    
+    <MSBuild.ExtensionPack.Web.Iis7Website TaskAction="CheckExists"
+                                           Name="$(ProjectName)"
+                                           MachineName="$(TargetServer)"
+                                           UserName="$(UserName)"
+                                           UserPassword="$(UserPassword)">
+      <Output TaskParameter="Exists"
+              PropertyName="ComponentExists" />
+    </MSBuild.ExtensionPack.Web.Iis7Website>
+
+    <MSBuild.ExtensionPack.Web.Iis7Website TaskAction="Delete"
+                                           Condition=" $(ComponentExists) == 'true' "
+                                           Name="$(ProjectName)"
+                                           MachineName="$(TargetServer)"
+                                           UserName="$(UserName)"
+                                           UserPassword="$(UserPassword)">
+      <Output TaskParameter="SiteID"
+              PropertyName="WebSiteID" />
+    </MSBuild.ExtensionPack.Web.Iis7Website>
+  </Target>
+
+  <Target Name="CreateSiteIIS7">
+    <PropertyGroup>
+      <WebSitePath>$([System.IO.Path]::GetFullPath('$(RootFilePath)\$(ProjectName)'))</WebSitePath>
+    </PropertyGroup>
+
+    <MSBuild.ExtensionPack.Web.Iis7Website TaskAction="Create"
+                                           Name="$(ProjectName)"
+                                           Port="80"
+                                           Path="$(WebSitePath)"
+                                           AppPool="$(ProjectName)"
+                                           MachineName="$(TargetServer)"
+                                           UserName="$(UserName)"
+                                           UserPassword="$(UserPassword)">
+      <Output TaskParameter="SiteID"
+              PropertyName="WebSiteID" />
+    </MSBuild.ExtensionPack.Web.Iis7Website>
+  </Target>
+
+  <Target Name="RemoveAppPoolIIS7">
+    <MSBuild.ExtensionPack.Web.Iis7AppPool
+          TaskAction="CheckExists"
+          Name="$(ProjectName)"
+          MachineName="$(TargetServer)"
+                                           UserName="$(UserName)"
+                                           UserPassword="$(UserPassword)">
+      <Output TaskParameter="Exists"
+              PropertyName="ComponentExists" />
+    </MSBuild.ExtensionPack.Web.Iis7AppPool>
+
+    <MSBuild.ExtensionPack.Web.Iis7AppPool
+          TaskAction="Delete"
+          Condition=" $(ComponentExists) == 'true' "
+          Name="$(ProjectName)"
+          MachineName="$(TargetServer)"
+                                           UserName="$(UserName)"
+                                           UserPassword="$(UserPassword)" />
+  </Target>
+
+  <Target Name="CreateAppPoolIIS7">
+    <MSBuild.ExtensionPack.Web.Iis7AppPool
+          TaskAction="Create"
+          AutoStart="true"
+          ManagedRuntimeVersion="v4.0"
+          Name="$(ProjectName)"
+          PipelineMode="Integrated"
+          MaxProcesses="1"
+          IdentityType="NetworkService"
+          MachineName="$(TargetServer)"
+                                           UserName="$(UserName)"
+                                           UserPassword="$(UserPassword)" />
+  </Target>
+
+  <Target Name="RemoveBindingIIS7">
+    <MSBuild.ExtensionPack.Web.Iis7Binding
+          TaskAction="CheckExists"
+          Name="$(ProjectName)"
+          BindingInformation="$(BindingInfo)"
+          MachineName="$(TargetServer)"
+                                           UserName="$(UserName)"
+                                           UserPassword="$(UserPassword)">
+      <Output TaskParameter="Exists"
+              PropertyName="ComponentExists" />
+    </MSBuild.ExtensionPack.Web.Iis7Binding>
+
+    <MSBuild.ExtensionPack.Web.Iis7Binding
+        TaskAction="Remove"
+        Condition=" $(ComponentExists) == 'true' "
+        Name="$(ProjectName)"
+        BindingInformation="$(BindingInfo)"
+        BindingProtocol="http"
+        MachineName="$(TargetServer)"
+                                           UserName="$(UserName)"
+                                           UserPassword="$(UserPassword)" />
+  </Target>
+
+  <Target Name="AddBindingIIS7">
+    <MSBuild.ExtensionPack.Web.Iis7Binding
+        TaskAction="Add"
+        Name="$(ProjectName)"
+        BindingInformation="$(BindingInfo)"
+        BindingProtocol="http"
+        MachineName="$(TargetServer)"
+                                           UserName="$(UserName)"
+                                           UserPassword="$(UserPassword)"/>
   </Target>
 </Project>
