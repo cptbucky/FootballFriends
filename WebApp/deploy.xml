@@ -45,12 +45,14 @@
     <PropertyGroup>
       <ArtifactsAbsPath>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))</ArtifactsAbsPath>
 
-      <WhatIf>T</WhatIf>
+      <WhatIf Condition=" $(WhatIf) == '' ">T</WhatIf>
 
+      <MsDeployServer Condition=" $(TargetServer) != '' ">/M:$(TargetServer) /U:$(UserName) /P:$(UserPassword) </MsDeployServer>
+      
       <DeploySetParamsFile>-setParamFile:&quot;$(ArtifactsAbsPath)$(ProjectName)\SetParameters.$(Environment).xml&quot;</DeploySetParamsFile>
     </PropertyGroup>
 
-    <Exec Command="$(ProjectName)\$(ProjectName).deploy.cmd /$(WhatIf) $(DeploySetParamsFile)" />
+    <Exec Command="$(ProjectName)\$(ProjectName).deploy.cmd /$(WhatIf) $(MsDeployServer)$(DeploySetParamsFile)" />
   </Target>
 
   <Target Name="RemoveSiteIIS7">
