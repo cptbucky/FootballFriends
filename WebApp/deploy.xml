@@ -1,5 +1,5 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
-         DefaultTargets="CreateSites;DeploySites"
+         DefaultTargets="DeploySites"
          ToolsVersion="4.0">
 
   <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
@@ -45,20 +45,10 @@
 
   <Target Name="DeploySite">
     <PropertyGroup>
-      <ArtifactsAbsPath>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)\BuildArtifacts\$(ProjectName)'))</ArtifactsAbsPath>
-
-      <TargetServerArg Condition=" $(TargetServer) != '' ">,computerName='$(TargetServer)'</TargetServerArg>
-
-      <DeploySource>-source:package=&quot;$(ArtifactsAbsPath)\$(ProjectName).zip&quot;</DeploySource>
-      <DeployDest>-dest:auto$(TargetServerArg)</DeployDest>
-
-      <DeploySetParamsFile>-setParamFile:&quot;$(ArtifactsAbsPath)\$(ProjectName).SetParameters.xml&quot;</DeploySetParamsFile>
-      <DeployLinkExtensions>-disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension</DeployLinkExtensions>
-      <DeployRules></DeployRules>
-      <DeployWhatIf Condition=" $(Environment) == 'local' ">-whatif</DeployWhatIf>
+      <WhatIf>T</WhatIf>
     </PropertyGroup>
-
-    <Exec Command="msdeploy.exe -verb:sync $(DeploySource) $(DeployDest) $(DeploySetParamsFile) $(DeployLinkExtensions) $(DeployRules) $(DeployWhatIf)" />
+    
+    <Exec Command="$(ProjectName)\$(ProjectName).deploy.cmd /$(WhatIf)" />
   </Target>
 
   <Target Name="RemoveSiteIIS7">

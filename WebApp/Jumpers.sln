@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumpers.Web", "JumpersForGoalposts.Web\Jumpers.Web.csproj", "{1CECE015-332C-4D8B-85BB-A675619751DA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumpers.Data", "JumpersForGoalposts.Data\Jumpers.Data.csproj", "{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumpers.Services", "Jumpers.Services\Jumpers.Services.csproj", "{1B60E6B5-4540-4981-9361-B350E33630AF}"
@@ -23,15 +21,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A622AE
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Jumpers.Database", "Jumpers.Database\Jumpers.Database.sqlproj", "{C3EA01D3-9FC0-4555-BAB0-41E70FE15A9C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumpers.Web", "Jumpers.Web\Jumpers.Web.csproj", "{1CECE015-332C-4D8B-85BB-A675619751DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1CECE015-332C-4D8B-85BB-A675619751DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1CECE015-332C-4D8B-85BB-A675619751DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1CECE015-332C-4D8B-85BB-A675619751DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -50,6 +47,10 @@ Global
 		{C3EA01D3-9FC0-4555-BAB0-41E70FE15A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3EA01D3-9FC0-4555-BAB0-41E70FE15A9C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C3EA01D3-9FC0-4555-BAB0-41E70FE15A9C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1CECE015-332C-4D8B-85BB-A675619751DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CECE015-332C-4D8B-85BB-A675619751DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CECE015-332C-4D8B-85BB-A675619751DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CECE015-332C-4D8B-85BB-A675619751DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
