@@ -7,8 +7,6 @@
 
   <PropertyGroup>
     <Configuration Condition=" $(Configuration) == '' ">Debug</Configuration>
-    <Environment Condition=" $(Configuration) == 'Debug' ">local</Environment>
-
     <RootFilePath Condition=" $(RootPath) == '' ">C:\WebSites</RootFilePath>
   </PropertyGroup>
 
@@ -43,18 +41,22 @@
              Targets="DeploySite" />
   </Target>
 
-  <Target Name="DeploySite">
+  <Target Name="DeploySite" Condition=" $(Environment) != '' ">
     <PropertyGroup>
+      <ArtifactsAbsPath>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))</ArtifactsAbsPath>
+
       <WhatIf>T</WhatIf>
+
+      <DeploySetParamsFile>-setParamFile:&quot;$(ArtifactsAbsPath)$(ProjectName)\SetParameters.$(Environment).xml&quot;</DeploySetParamsFile>
     </PropertyGroup>
-    
-    <Exec Command="$(ProjectName)\$(ProjectName).deploy.cmd /$(WhatIf)" />
+
+    <Exec Command="$(ProjectName)\$(ProjectName).deploy.cmd /$(WhatIf) $(DeploySetParamsFile)" />
   </Target>
 
   <Target Name="RemoveSiteIIS7">
     <Message Text="User: $(UserName)"/>
     <Message Text="Password: $(UserPassword)"/>
-    
+
     <MSBuild.ExtensionPack.Web.Iis7Website TaskAction="CheckExists"
                                            Name="$(ProjectName)"
                                            MachineName="$(TargetServer)"
