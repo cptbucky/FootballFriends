@@ -31,8 +31,8 @@
     <Copy SourceFiles="@(SetParamsService)" DestinationFolder="$(BuildArtifactLocation)\Jumpers.Services"/>    
     <Delete Files="$(BuildArtifactLocation)\Jumpers.Services\Jumpers.Services.SetParameters.xml"/>
 
-    <!--<Copy SourceFiles="@(SetParamsWeb)" DestinationFolder="$(BuildArtifactLocation)\Jumpers.Web"/>
-    <Delete Files="$(BuildArtifactLocation)\Jumpers.Web\Jumpers.Web.SetParameters.xml"/>-->
+    <Copy SourceFiles="@(SetParamsWeb)" DestinationFolder="$(BuildArtifactLocation)\Jumpers.Web"/>
+    <Delete Files="$(BuildArtifactLocation)\Jumpers.Web\Jumpers.Web.SetParameters.xml"/>
 
     <!--<Copy SourceFiles="$(ProjectName)\SetParameters.*.xml" DestinationFolder="$(BuildArtifactLocation)\$(ProjectName)"/>-->
   </Target>
