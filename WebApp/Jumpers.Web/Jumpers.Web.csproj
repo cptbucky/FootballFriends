@@ -92,7 +92,7 @@
     <Content Include="Content\images\kit_64.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="default.aspx" />
-    <Content Include="parameters.xml" />
+    <None Include="parameters.xml" />
     <Content Include="Scripts\angular-bootstrap-prettify.js" />
     <Content Include="Scripts\angular-bootstrap-prettify.min.js" />
     <Content Include="Scripts\angular-bootstrap.js" />
@@ -458,7 +458,7 @@
     <Content Include="Scripts\ui-bootstrap-0.6.0.min.js" />
     <Content Include="Scripts\ui-bootstrap-tpls-0.6.0.js" />
     <Content Include="Scripts\ui-bootstrap-tpls-0.6.0.min.js" />
-    <Content Include="SetParameters.Dev.xml" />
+    <None Include="SetParameters.Dev.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
