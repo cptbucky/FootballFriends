@@ -90,6 +90,7 @@
     <Content Include="Content\images\ic_2-action-about.png" />
     <Content Include="Content\images\ic_5-content-new.png" />
     <Content Include="Content\images\kit_64.png" />
+    <Content Include="SetParameters.Live.xml" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="default.aspx" />
     <None Include="parameters.xml" />
