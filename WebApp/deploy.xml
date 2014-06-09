@@ -47,12 +47,13 @@
 
       <WhatIf Condition=" $(WhatIf) == '' ">T</WhatIf>
 
-      <MsDeployServer Condition=" $(TargetServer) != '' ">/M:$(TargetServer) /U:$(UserName) /P:$(UserPassword) /A:Basic </MsDeployServer>
+      <MsDeployServer Condition=" $(TargetServer) != '' ">/M:$(TargetServer) /U:$(UserName) /P:$(UserPassword) </MsDeployServer>
+      <MsDeployAuth Condition=" $(UserAuth) != '' ">/A:$(UserAuth) </MsDeployAuth>
       
       <DeploySetParamsFile>-setParamFile:&quot;$(ArtifactsAbsPath)$(ProjectName)\SetParameters.$(Environment).xml&quot;</DeploySetParamsFile>
     </PropertyGroup>
 
-    <Exec Command="$(ProjectName)\$(ProjectName).deploy.cmd /$(WhatIf) $(MsDeployServer)$(DeploySetParamsFile)" />
+    <Exec Command="$(ProjectName)\$(ProjectName).deploy.cmd /$(WhatIf) $(MsDeployServer)$(MsDeployAuth)$(DeploySetParamsFile)" />
   </Target>
 
   <Target Name="RemoveSiteIIS7">
