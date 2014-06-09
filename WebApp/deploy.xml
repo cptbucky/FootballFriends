@@ -47,7 +47,7 @@
 
       <WhatIf Condition=" $(WhatIf) == '' ">T</WhatIf>
 
-      <MsDeployServer Condition=" $(TargetServer) != '' ">/M:$(TargetServer) /U:$(UserName) /P:$(UserPassword) /A:Basic</MsDeployServer>
+      <MsDeployServer Condition=" $(TargetServer) != '' ">/M:$(TargetServer) /U:$(UserName) /P:$(UserPassword) /A:Basic </MsDeployServer>
       
       <DeploySetParamsFile>-setParamFile:&quot;$(ArtifactsAbsPath)$(ProjectName)\SetParameters.$(Environment).xml&quot;</DeploySetParamsFile>
     </PropertyGroup>
