@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Jumpers.Azure.publish.xml" />
+    <None Include="Properties\Jumpers.Dev.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Users.sql" />
