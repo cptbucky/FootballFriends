@@ -47,7 +47,7 @@
 
       <WhatIf Condition=" $(WhatIf) == '' ">T</WhatIf>
 
-      <MsDeployServer Condition=" $(TargetServer) != '' ">/M:$(TargetServer) /U:$(UserName) /P:$(UserPassword) </MsDeployServer>
+      <MsDeployServer Condition=" $(TargetServer) != '' ">&quot;/M:$(TargetServer)&quot; /U:$(UserName) /P:$(UserPassword) </MsDeployServer>
       <MsDeployAuth Condition=" $(UserAuth) != '' ">/A:$(UserAuth) </MsDeployAuth>
       
       <DeploySetParamsFile>-setParamFile:&quot;$(ArtifactsAbsPath)$(ProjectName)\SetParameters.$(Environment).xml&quot;</DeploySetParamsFile>
