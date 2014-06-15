@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectsToBuild Include="**\Jumpers.Services.csproj"/>
     <ProjectsToBuild Include="**\Jumpers.Web.csproj"/>
+    <ProjectsToBuild Include="**\Jumpers.Database.sqlproj"/>
   </ItemGroup>
 
   <Target Name="BuildProjects">
