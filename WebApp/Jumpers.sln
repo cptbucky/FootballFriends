@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumpers.Data", "JumpersForGoalposts.Data\Jumpers.Data.csproj", "{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumpers.Services", "Jumpers.Services\Jumpers.Services.csproj", "{1B60E6B5-4540-4981-9361-B350E33630AF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{370C58AE-544D-44C1-B1B6-D5F3A32975E8}"
@@ -27,16 +25,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7C96E68E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumpers.IntegrationTests", "..\Jumpers.IntegrationTests\Jumpers.IntegrationTests.csproj", "{19D2B87F-B541-4827-97C4-3023CC71832B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumpers.Data", "..\Jumpers.Data\Jumpers.Data.csproj", "{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1B60E6B5-4540-4981-9361-B350E33630AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1B60E6B5-4540-4981-9361-B350E33630AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B60E6B5-4540-4981-9361-B350E33630AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -59,6 +55,10 @@ Global
 		{19D2B87F-B541-4827-97C4-3023CC71832B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19D2B87F-B541-4827-97C4-3023CC71832B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19D2B87F-B541-4827-97C4-3023CC71832B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

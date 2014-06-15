@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
-using JumpersForGoalposts.Data.Contracts;
-using JumpersForGoalposts.Data.Providers;
+using Jumpers.Data.Contracts;
+using Jumpers.Data.Providers;
 
 namespace Jumpers.Services.Controllers
 {

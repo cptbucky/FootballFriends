@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="JumpersModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="JumpersModelStoreContainer">
+          <EntitySet Name="EventGroups" EntityType="JumpersModel.Store.EventGroups" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EventMembers" EntityType="JumpersModel.Store.EventMembers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Events" EntityType="JumpersModel.Store.Events" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Members" EntityType="JumpersModel.Store.Members" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserEvents" EntityType="JumpersModel.Store.UserEvents" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="JumpersModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_EventMembers_Events" Association="JumpersModel.Store.FK_EventMembers_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="EventMembers" EntitySet="EventMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventMembers_Members" Association="JumpersModel.Store.FK_EventMembers_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="EventMembers" EntitySet="EventMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_EventGroups" Association="JumpersModel.Store.FK_Events_EventGroups">
+            <End Role="EventGroups" EntitySet="EventGroups" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserEvents_Events" Association="JumpersModel.Store.FK_UserEvents_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="UserEvents" EntitySet="UserEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserEvents_Users" Association="JumpersModel.Store.FK_UserEvents_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserEvents" EntitySet="UserEvents" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="EventGroups">
+          <Key>
+            <PropertyRef Name="EventGroupId" />
+          </Key>
+          <Property Name="EventGroupId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EventMembers">
+          <Key>
+            <PropertyRef Name="EventId" />
+            <PropertyRef Name="MemberId" />
+          </Key>
+          <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="MemberId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EventGroupId" Type="int" />
+          <Property Name="Start" Type="datetime" Nullable="false" />
+          <Property Name="Finish" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="MemberId" />
+          </Key>
+          <Property Name="MemberId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserEvents">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="EventId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_EventMembers_Events">
+          <End Role="Events" Type="JumpersModel.Store.Events" Multiplicity="1" />
+          <End Role="EventMembers" Type="JumpersModel.Store.EventMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="EventMembers">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventMembers_Members">
+          <End Role="Members" Type="JumpersModel.Store.Members" Multiplicity="1" />
+          <End Role="EventMembers" Type="JumpersModel.Store.EventMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberId" />
+            </Principal>
+            <Dependent Role="EventMembers">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_EventGroups">
+          <End Role="EventGroups" Type="JumpersModel.Store.EventGroups" Multiplicity="0..1" />
+          <End Role="Events" Type="JumpersModel.Store.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventGroups">
+              <PropertyRef Name="EventGroupId" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="EventGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserEvents_Events">
+          <End Role="Events" Type="JumpersModel.Store.Events" Multiplicity="1" />
+          <End Role="UserEvents" Type="JumpersModel.Store.UserEvents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="UserEvents">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserEvents_Users">
+          <End Role="Users" Type="JumpersModel.Store.Users" Multiplicity="1" />
+          <End Role="UserEvents" Type="JumpersModel.Store.UserEvents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserEvents">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="EventGroups_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="EventGroups_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="eventGroupId" Type="int" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Events_GetByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Events_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="datetime" Mode="In" />
+          <Parameter Name="finish" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="Events_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="eventId" Type="int" Mode="In" />
+          <Parameter Name="eventGroupId" Type="int" Mode="In" />
+          <Parameter Name="start" Type="datetime" Mode="In" />
+          <Parameter Name="finish" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="Members_GetByEventId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="eventId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Members_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Members_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="memberId" Type="int" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Users_GetByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Users_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Users_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="int" Mode="In" />
+          <Parameter Name="email" Type="nvarchar" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JumpersModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="JumpersEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="EventGroups" EntityType="JumpersModel.EventGroup" />
+          <EntitySet Name="Events" EntityType="JumpersModel.Event" />
+          <EntitySet Name="Members" EntityType="JumpersModel.Member" />
+          <EntitySet Name="Users" EntityType="JumpersModel.User" />
+          <AssociationSet Name="FK_Events_EventGroups" Association="JumpersModel.FK_Events_EventGroups">
+            <End Role="EventGroups" EntitySet="EventGroups" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="EventMembers" Association="JumpersModel.EventMembers">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Members" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="UserEvents" Association="JumpersModel.UserEvents">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <FunctionImport Name="EventGroups_Insert" ReturnType="Collection(JumpersModel.EventGroups_Insert_Result)">
+          <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="EventGroups_Update">
+            <Parameter Name="eventGroupId" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Events_GetByUserId" ReturnType="Collection(Int32)">
+          <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Events_Insert" ReturnType="Collection(JumpersModel.Events_Insert_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="finish" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Events_Update">
+            <Parameter Name="eventId" Mode="In" Type="Int32" />
+            <Parameter Name="eventGroupId" Mode="In" Type="Int32" />
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="finish" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Members_GetByEventId" ReturnType="Collection(Int32)">
+          <Parameter Name="eventId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Members_Insert" ReturnType="Collection(JumpersModel.Members_Insert_Result)">
+          <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Members_Update">
+            <Parameter Name="memberId" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Teams_GetByUserId">
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Users_GetById">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Users_GetByUserId" ReturnType="Collection(Int32)">
+          <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Users_Insert" ReturnType="Collection(JumpersModel.Users_Insert_Result)">
+          <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Users_Update">
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+            <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="EventGroup">
+          <Key>
+            <PropertyRef Name="EventGroupId" />
+          </Key>
+          <Property Name="EventGroupId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Events" Relationship="JumpersModel.FK_Events_EventGroups" FromRole="EventGroups" ToRole="Events" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="EventGroupId" Type="Int32" />
+          <Property Name="Start" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Finish" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="EventGroup" Relationship="JumpersModel.FK_Events_EventGroups" FromRole="Events" ToRole="EventGroups" />
+          <NavigationProperty Name="Members" Relationship="JumpersModel.EventMembers" FromRole="Events" ToRole="Members" />
+          <NavigationProperty Name="Users" Relationship="JumpersModel.UserEvents" FromRole="Events" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="MemberId" />
+          </Key>
+          <Property Name="MemberId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Events" Relationship="JumpersModel.EventMembers" FromRole="Members" ToRole="Events" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Events" Relationship="JumpersModel.UserEvents" FromRole="Users" ToRole="Events" />
+        </EntityType>
+        <Association Name="FK_Events_EventGroups">
+          <End Role="EventGroups" Type="JumpersModel.EventGroup" Multiplicity="0..1" />
+          <End Role="Events" Type="JumpersModel.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventGroups">
+              <PropertyRef Name="EventGroupId" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="EventGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EventMembers">
+          <End Role="Events" Type="JumpersModel.Event" Multiplicity="*" />
+          <End Role="Members" Type="JumpersModel.Member" Multiplicity="*" />
+        </Association>
+        <Association Name="UserEvents">
+          <End Role="Events" Type="JumpersModel.Event" Multiplicity="*" />
+          <End Role="Users" Type="JumpersModel.User" Multiplicity="*" />
+        </Association>
+        <ComplexType Name="EventGroups_Insert_Result">
+          <Property Type="Int32" Name="EventGroupId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Events_Insert_Result">
+          <Property Type="Int32" Name="EventId" Nullable="false" />
+          <Property Type="DateTime" Name="Start" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="Finish" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="Members_Insert_Result">
+          <Property Type="Int32" Name="MemberId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Users_Insert_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="JumpersModelStoreContainer" CdmEntityContainer="JumpersEntities">
+          <EntitySetMapping Name="EventGroups">
+            <EntityTypeMapping TypeName="JumpersModel.EventGroup">
+              <MappingFragment StoreEntitySet="EventGroups">
+                <ScalarProperty Name="EventGroupId" ColumnName="EventGroupId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="JumpersModel.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="EventGroupId" ColumnName="EventGroupId" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="Finish" ColumnName="Finish" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="JumpersModel.Member">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="JumpersModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="EventMembers" TypeName="JumpersModel.EventMembers" StoreEntitySet="EventMembers">
+            <EndProperty Name="Events">
+              <ScalarProperty Name="EventId" ColumnName="EventId" />
+            </EndProperty>
+            <EndProperty Name="Members">
+              <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserEvents" TypeName="JumpersModel.UserEvents" StoreEntitySet="UserEvents">
+            <EndProperty Name="Events">
+              <ScalarProperty Name="EventId" ColumnName="EventId" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="EventGroups_Insert" FunctionName="JumpersModel.Store.EventGroups_Insert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="JumpersModel.EventGroups_Insert_Result">
+                <ScalarProperty Name="EventGroupId" ColumnName="EventGroupId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="EventGroups_Update" FunctionName="JumpersModel.Store.EventGroups_Update" />
+          <FunctionImportMapping FunctionImportName="Events_GetByUserId" FunctionName="JumpersModel.Store.Events_GetByUserId" />
+          <FunctionImportMapping FunctionImportName="Events_Insert" FunctionName="JumpersModel.Store.Events_Insert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="JumpersModel.Events_Insert_Result">
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="Finish" ColumnName="Finish" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Events_Update" FunctionName="JumpersModel.Store.Events_Update" />
+          <FunctionImportMapping FunctionImportName="Members_GetByEventId" FunctionName="JumpersModel.Store.Members_GetByEventId" />
+          <FunctionImportMapping FunctionImportName="Members_Insert" FunctionName="JumpersModel.Store.Members_Insert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="JumpersModel.Members_Insert_Result">
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Members_Update" FunctionName="JumpersModel.Store.Members_Update" />
+          <FunctionImportMapping FunctionImportName="Users_GetByUserId" FunctionName="JumpersModel.Store.Users_GetByUserId" />
+          <FunctionImportMapping FunctionImportName="Users_Insert" FunctionName="JumpersModel.Store.Users_Insert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="JumpersModel.Users_Insert_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Users_Update" FunctionName="JumpersModel.Store.Users_Update" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

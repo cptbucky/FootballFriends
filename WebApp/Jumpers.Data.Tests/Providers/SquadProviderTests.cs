@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using JumpersForGoalposts.Data.Contracts;
-using JumpersForGoalposts.Data.Providers;
+using Jumpers.Data.Contracts;
+using Jumpers.Data.Providers;
 using NUnit.Framework;
 
 namespace Jumpers.Data.UnitTests.Providers
