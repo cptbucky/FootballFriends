@@ -20,13 +20,17 @@
   <ItemGroup>
     <ProjectsToBuild Include="**\Jumpers.Services.csproj"/>
     <ProjectsToBuild Include="**\Jumpers.Web.csproj"/>
-    <ProjectsToBuild Include="**\Jumpers.Database.sqlproj"/>
+    <DatabaseToBuild Include="**\Jumpers.Database.sqlproj"/>
   </ItemGroup>
 
   <Target Name="BuildProjects">
     <MSBuild Projects="@(ProjectsToBuild)"
              Targets="Build"
              Properties="VisualStudioVersion=12.0"/>
+
+    <MSBuild Projects="@(DatabaseToBuild)"
+             Targets="Build"
+             Properties="VisualStudioVersion=11.0"/>
 
     <ItemGroup>
       <TestProjects Include="$(TestProjects)"/>
