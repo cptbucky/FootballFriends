@@ -49,11 +49,21 @@
 
       <MsDeployServer Condition=" $(TargetServer) != '' ">&quot;/M:$(TargetServer)&quot; /U:$(UserName) /P:$(UserPassword) </MsDeployServer>
       <MsDeployAuth Condition=" $(UserAuth) != '' ">/A:$(UserAuth) </MsDeployAuth>
-      
+
       <DeploySetParamsFile>-setParamFile:&quot;$(ArtifactsAbsPath)$(ProjectName)\SetParameters.$(Environment).xml&quot;</DeploySetParamsFile>
     </PropertyGroup>
 
     <Exec Command="$(ProjectName)\$(ProjectName).deploy.cmd /$(WhatIf) $(MsDeployServer)$(MsDeployAuth)$(DeploySetParamsFile)" />
+  </Target>
+
+  <Target Name="DeployDatabase">
+    <PropertyGroup>
+      <ArtifactsAbsPath>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)'))</ArtifactsAbsPath>
+
+      <DacPacPath>$(ArtifactsAbsPath)Jumpers.Database\Jumpers.Database.dacpac</DacPacPath>
+    </PropertyGroup>
+
+    <Exec Command="MSDeploy.exe –verb:sync –source:dbSqlPackage=&quot;$(DacPacPath)&quot; –dest:dbSqlPackage=&quot;$(TargetSqlConnectionString)&quot;,Action=Publish" />
   </Target>
 
   <Target Name="RemoveSiteIIS7">

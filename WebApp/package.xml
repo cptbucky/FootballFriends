@@ -14,12 +14,15 @@
     <ProjectsToBuild Include="**\Jumpers.Web.csproj">
       <ProjectName>Jumpers.Web</ProjectName>
     </ProjectsToBuild>
+    <DatabaseApps Include="**\*.dacpac" />
   </ItemGroup>
 
   <Target Name="PackageProjects">
-    <MSBuild Projects="@(ProjectsToBuild)"
+    <!--<MSBuild Projects="@(ProjectsToBuild)"
              Targets="Package"
-             Properties="VisualStudioVersion=12.0;PackageLocation=..\$(BuildArtifactLocation)\%(ProjectsToBuild.ProjectName)\"/>
+             Properties="VisualStudioVersion=12.0;PackageLocation=..\$(BuildArtifactLocation)\%(ProjectsToBuild.ProjectName)\"/>-->
+    
+    <Copy SourceFiles="@(DatabaseApps)" DestinationFolder="$(BuildArtifactLocation)\Jumpers.Database"/>
     
     <Copy SourceFiles="deploy.xml" DestinationFiles="$(BuildArtifactLocation)\deploy.xml"/>
 
