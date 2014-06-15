@@ -4,7 +4,7 @@
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseName>Jumpers</TargetDatabaseName>
     <DeployScriptFileName>Jumpers.sql</DeployScriptFileName>
-    <BlockWhenDriftDetected>True</BlockWhenDriftDetected>
+    <BlockWhenDriftDetected>False</BlockWhenDriftDetected>
     <RegisterDataTierApplication>True</RegisterDataTierApplication>
     <TargetConnectionString>Data Source=tcp:ylzta0tvmy.database.windows.net,1433;Persist Security Info=True;User ID=Tom;Pooling=False</TargetConnectionString>
     <ProfileVersionNumber>1</ProfileVersionNumber>

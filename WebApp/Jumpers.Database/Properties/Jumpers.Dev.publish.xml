@@ -4,7 +4,7 @@
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseName>Jumpers</TargetDatabaseName>
     <DeployScriptFileName>Jumpers.sql</DeployScriptFileName>
-    <TargetConnectionString>Data Source=DEV-DUCK-DB\SQLEXPRESS;Integrated Security=True;Pooling=False</TargetConnectionString>
+    <TargetConnectionString>Data Source=DEV-DUCK-DB;Integrated Security=True;Pooling=False</TargetConnectionString>
     <BlockWhenDriftDetected>True</BlockWhenDriftDetected>
     <RegisterDataTierApplication>True</RegisterDataTierApplication>
     <ProfileVersionNumber>1</ProfileVersionNumber>
