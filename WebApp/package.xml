@@ -18,9 +18,9 @@
   </ItemGroup>
 
   <Target Name="PackageProjects">
-    <!--<MSBuild Projects="@(ProjectsToBuild)"
+    <MSBuild Projects="@(ProjectsToBuild)"
              Targets="Package"
-             Properties="VisualStudioVersion=12.0;PackageLocation=..\$(BuildArtifactLocation)\%(ProjectsToBuild.ProjectName)\"/>-->
+             Properties="VisualStudioVersion=12.0;PackageLocation=..\$(BuildArtifactLocation)\%(ProjectsToBuild.ProjectName)\"/>
     
     <Copy SourceFiles="@(DatabaseApps)" DestinationFolder="$(BuildArtifactLocation)\Jumpers.Database"/>
     
@@ -36,7 +36,5 @@
 
     <Copy SourceFiles="@(SetParamsWeb)" DestinationFolder="$(BuildArtifactLocation)\Jumpers.Web"/>
     <Delete Files="$(BuildArtifactLocation)\Jumpers.Web\Jumpers.Web.SetParameters.xml"/>
-
-    <!--<Copy SourceFiles="$(ProjectName)\SetParameters.*.xml" DestinationFolder="$(BuildArtifactLocation)\$(ProjectName)"/>-->
   </Target>
 </Project>

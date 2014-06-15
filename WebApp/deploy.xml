@@ -8,10 +8,11 @@
   <PropertyGroup>
     <Configuration Condition=" $(Configuration) == '' ">Debug</Configuration>
     <RootFilePath Condition=" $(RootPath) == '' ">C:\WebSites</RootFilePath>
+    <Environment>Dev</Environment>
   </PropertyGroup>
 
   <ItemGroup>
-    <!--<ProjectsToBuild Include="$(MSBuildProjectFullPath)">
+    <ProjectsToBuild Include="$(MSBuildProjectFullPath)">
       <Properties>
         ProjectName=Jumpers.Services;
         BindingInfo=*:80:$(Environment).services.jumpers.com;
@@ -19,7 +20,7 @@
         UserName=$(UserName);
         UserPassword=$(UserPassword)
       </Properties>
-    </ProjectsToBuild>-->
+    </ProjectsToBuild>
     <ProjectsToBuild Include="$(MSBuildProjectFullPath)">
       <Properties>
         ProjectName=Jumpers.Web;
