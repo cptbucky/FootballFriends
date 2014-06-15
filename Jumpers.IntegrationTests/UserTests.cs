@@ -10,6 +10,11 @@ namespace Jumpers.IntegrationTests
     [TestFixture]
     public class UserTests
     {
+        [Test]
+        public void CreateUser_WithEmail_ExpectRecordInDatabase()
+        {
 
+            Assert.AreEqual(expectedRowCount, rowCount);
+        }
     }
 }
