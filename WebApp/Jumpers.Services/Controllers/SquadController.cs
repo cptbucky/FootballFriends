@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 using Jumpers.Data.Contracts;
-using Jumpers.Data.Providers;
 
 namespace Jumpers.Services.Controllers
 {
     public class SquadController : ApiController
     {
         // GET api/values/5
-        public IEnumerable<IPlayer> Get(int id)
-        {
-            return SquadProvider.GetSquad();
-        }
+        //public IEnumerable<IPlayer> Get(int id)
+        //{
+        //    return SquadProvider.GetSquad();
+        //}
 
         // POST api/values
         public void Post([FromBody] string value)

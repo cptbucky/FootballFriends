@@ -34,3 +34,6 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+
+[assembly:InternalsVisibleTo("Jumpers.Integration.Tests")]
+[assembly:InternalsVisibleTo("Jumpers.Unit.Tests")]

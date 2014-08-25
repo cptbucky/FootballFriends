@@ -2,8 +2,8 @@
 
 namespace Jumpers.Data.Entities.Access
 {
-    public partial class User : IUser
+    public partial class Team : ITeam
     {
-        public int? Id { get { return UserId; } }
+        public int? Id { get { return TeamId; } }
     }
 }

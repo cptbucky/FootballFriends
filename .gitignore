@@ -1,2 +1,5 @@
 WebApp/BuildArtifacts/
 */obj/*
+*/bin/*
+*.ncrunchproject
+*.ncrunchsolution

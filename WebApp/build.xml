@@ -13,24 +13,23 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TestProjects>**\*.UnitTests.csproj</TestProjects>
-    <TestAssemblies>.\**\bin\$(Configuration)\*.UnitTests.dll</TestAssemblies>
+    <TestProjects>**\*.Tests.csproj</TestProjects>
+    <TestAssemblies>.\**\bin\$(Configuration)\*.Tests.dll</TestAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectsToBuild Include="**\Jumpers.Services.csproj"/>
-    <ProjectsToBuild Include="**\Jumpers.Web.csproj"/>
+    <PresentationToBuild Include="**\Jumpers.Services.csproj"/>
+    <PresentationToBuild Include="**\Jumpers.Web.csproj"/>
     <DatabaseToBuild Include="**\Jumpers.Database.sqlproj"/>
   </ItemGroup>
 
   <Target Name="BuildProjects">
-    <MSBuild Projects="@(ProjectsToBuild)"
+    <MSBuild Projects="@(PresentationToBuild)"
              Targets="Build"
              Properties="VisualStudioVersion=12.0"/>
 
     <MSBuild Projects="@(DatabaseToBuild)"
-             Targets="Build"
-             Properties="VisualStudioVersion=11.0"/>
+             Targets="Build"/>
 
     <ItemGroup>
       <TestProjects Include="$(TestProjects)"/>

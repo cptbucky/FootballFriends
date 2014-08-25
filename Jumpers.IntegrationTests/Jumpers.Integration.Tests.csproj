@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2E05485E-4792-4D7D-98D3-E981E8B4FB35}</ProjectGuid>
+    <ProjectGuid>{19D2B87F-B541-4827-97C4-3023CC71832B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Jumpers.Data.UnitTests</RootNamespace>
-    <AssemblyName>Jumpers.Data.UnitTests</AssemblyName>
+    <RootNamespace>Jumpers.Integration.Tests</RootNamespace>
+    <AssemblyName>Jumpers.Integration.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,15 +30,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebApp\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\WebApp\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
-      <HintPath>..\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
+      <HintPath>..\WebApp\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\WebApp\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,18 +55,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Providers\UserProviderTests.cs" />
-    <Compile Include="Providers\SquadProviderTests.cs" />
+    <Compile Include="Builders\TeamBuilder.cs" />
+    <Compile Include="TeamTests.cs" />
+    <Compile Include="Helpers\MockUser.cs" />
+    <Compile Include="Builders\UserBuilder.cs" />
+    <Compile Include="UserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Jumpers.Data\Jumpers.Data.csproj">
+    <ProjectReference Include="..\Jumpers.Data\Jumpers.Data.csproj">
       <Project>{c5ce98cc-197c-47b6-bece-de97a3bd11cd}</Project>
       <Name>Jumpers.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebApp\Jumpers.Services\Jumpers.Services.csproj">
+      <Project>{1b60e6b5-4540-4981-9361-b350e33630af}</Project>
+      <Name>Jumpers.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

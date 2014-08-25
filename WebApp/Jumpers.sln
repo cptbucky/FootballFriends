@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{370C58AE
 		package.xml = package.xml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumpers.UnitTests", "Jumpers.Data.Tests\Jumpers.UnitTests.csproj", "{2E05485E-4792-4D7D-98D3-E981E8B4FB35}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A622AEC6-4EFC-45E3-BC80-4562770B7CF8}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
@@ -21,11 +19,17 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Jumpers.Database", "Jumpers
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumpers.Web", "Jumpers.Web\Jumpers.Web.csproj", "{1CECE015-332C-4D8B-85BB-A675619751DA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7C96E68E-AA78-4CF3-8C61-97F0212B1F0A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{7C96E68E-AA78-4CF3-8C61-97F0212B1F0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumpers.IntegrationTests", "..\Jumpers.IntegrationTests\Jumpers.IntegrationTests.csproj", "{19D2B87F-B541-4827-97C4-3023CC71832B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumpers.Integration.Tests", "..\Jumpers.IntegrationTests\Jumpers.Integration.Tests.csproj", "{19D2B87F-B541-4827-97C4-3023CC71832B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumpers.Data", "..\Jumpers.Data\Jumpers.Data.csproj", "{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{0B218D36-F31B-4825-8CFA-2F580960D5CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{1E898560-237F-4194-9F35-158BCC7357BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jumpers.Unit.Tests", "..\Jumpers.Unit.Tests\Jumpers.Unit.Tests.csproj", "{2E05485E-4792-4D7D-98D3-E981E8B4FB35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +41,6 @@ Global
 		{1B60E6B5-4540-4981-9361-B350E33630AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B60E6B5-4540-4981-9361-B350E33630AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B60E6B5-4540-4981-9361-B350E33630AF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2E05485E-4792-4D7D-98D3-E981E8B4FB35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E05485E-4792-4D7D-98D3-E981E8B4FB35}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E05485E-4792-4D7D-98D3-E981E8B4FB35}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E05485E-4792-4D7D-98D3-E981E8B4FB35}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C3EA01D3-9FC0-4555-BAB0-41E70FE15A9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C3EA01D3-9FC0-4555-BAB0-41E70FE15A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3EA01D3-9FC0-4555-BAB0-41E70FE15A9C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -59,12 +59,20 @@ Global
 		{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E05485E-4792-4D7D-98D3-E981E8B4FB35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E05485E-4792-4D7D-98D3-E981E8B4FB35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E05485E-4792-4D7D-98D3-E981E8B4FB35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E05485E-4792-4D7D-98D3-E981E8B4FB35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{2E05485E-4792-4D7D-98D3-E981E8B4FB35} = {7C96E68E-AA78-4CF3-8C61-97F0212B1F0A}
 		{19D2B87F-B541-4827-97C4-3023CC71832B} = {7C96E68E-AA78-4CF3-8C61-97F0212B1F0A}
+		{2E05485E-4792-4D7D-98D3-E981E8B4FB35} = {7C96E68E-AA78-4CF3-8C61-97F0212B1F0A}
+		{1CECE015-332C-4D8B-85BB-A675619751DA} = {0B218D36-F31B-4825-8CFA-2F580960D5CE}
+		{1B60E6B5-4540-4981-9361-B350E33630AF} = {0B218D36-F31B-4825-8CFA-2F580960D5CE}
+		{C3EA01D3-9FC0-4555-BAB0-41E70FE15A9C} = {1E898560-237F-4194-9F35-158BCC7357BF}
+		{C5CE98CC-197C-47B6-BECE-DE97A3BD11CD} = {1E898560-237F-4194-9F35-158BCC7357BF}
 	EndGlobalSection
 EndGlobal

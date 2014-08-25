@@ -34,15 +34,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\WebApp\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebApp\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\WebApp\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebApp\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
@@ -54,37 +57,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\Player.cs" />
+    <Compile Include="Contracts\ITeam.cs" />
     <Compile Include="Contracts\IUser.cs" />
-    <Compile Include="Entities\Access\Jumpers.cs">
+    <Compile Include="Entities\Access\DataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Jumpers.tt</DependentUpon>
+      <DependentUpon>DataModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\Access\DataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Access\DataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Access\Team.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Access\User.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Team.cs" />
     <Compile Include="Entities\User.cs" />
-    <Compile Include="Entities\Access\Jumpers.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Jumpers.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\UserProvider.cs" />
-    <Compile Include="Providers\SquadProvider.cs" />
+    <Compile Include="Repositories\ITeamRepository.cs" />
+    <Compile Include="Repositories\TeamRepository.cs" />
+    <Compile Include="Repositories\EntityFrameworkRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\IUserRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="Entities\Access\Jumpers.edmx">
+    <EntityDeploy Include="Entities\Access\DataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Jumpers.Designer.cs</LastGenOutput>
+      <LastGenOutput>DataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Entities\Access\Jumpers.edmx.diagram">
-      <DependentUpon>Jumpers.edmx</DependentUpon>
-    </None>
-    <None Include="Entities\Access\Jumpers.tt">
+    <None Include="Entities\Access\DataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Jumpers.cs</LastGenOutput>
-      <DependentUpon>Jumpers.edmx</DependentUpon>
+      <DependentUpon>DataModel.edmx</DependentUpon>
+      <LastGenOutput>DataModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Entities\Access\DataModel.edmx.diagram">
+      <DependentUpon>DataModel.edmx</DependentUpon>
+    </None>
+    <None Include="Entities\Access\DataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataModel.edmx</DependentUpon>
+      <LastGenOutput>DataModel.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

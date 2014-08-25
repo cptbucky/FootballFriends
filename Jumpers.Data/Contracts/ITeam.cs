@@ -1,7 +1,9 @@
 namespace Jumpers.Data.Contracts
 {
-    public interface IPlayer
+    public interface ITeam
     {
+        int? Id { get; }
+
         string Name { get; set; }
     }
 }
